@@ -1,0 +1,79 @@
+<h1>Helle Farben abdunkeln</h1>
+
+<table>
+  <colgroup>
+    <col style="width: auto;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+    <col style="width: 50px;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th *ngFor="let n of [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]">{{ n }}%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="color-header omninet"
+          [style.background-color]="omninetColor.toHexString()"
+          [style.color]="omninetColor.isDark() ? '#ffffff': '#333333'">
+        <span>Omninet Beispiel</span>
+      </td>
+
+      <td class="omninet"
+          [style.background-color]="omninetColor.toHexString()"
+          [style.color]="omninetColor.isDark() ? '#ffffff': '#333333'">
+        <div>
+          <span>{{ omninetColor.toHexString() }} </span>
+          <span>{{ omninetColor.luminance }}%</span>
+        </div>
+      </td>
+
+      <td class="omninet"
+          *ngFor="let oColor of getDarker(omninetColor)"
+          [style.background-color]="oColor.toHexString()"
+          [style.color]="oColor.isDark() ? '#ffffff': '#333333'">
+        <div>
+          <span>{{ oColor.toHexString()}}</span>
+          <span [style.color]="oColor.isDark() ? '#cdcdcd': '#666666'">{{ oColor.luminance }}%</span>
+        </div>
+      </td>
+    </tr>
+
+
+    <tr *ngFor="let color of colorNames">
+      <td class="color-header"
+          [style.background-color]="color.toHexString()"
+          [style.color]="color.isDark() ? '#ffffff': '#333333'">
+        <span>{{color.name}}</span>
+      </td>
+
+      <td [style.background-color]="color.toHexString()"
+          [style.color]="color.isDark() ? '#ffffff': '#333333'">
+        <div>
+          <span>{{ color.toHexString() }}</span>
+          <span [style.color]="color.isDark() ? '#fefefe': '#666666'">{{ color.luminance }}%</span>
+        </div>
+      </td>
+
+      <td *ngFor="let darker of getDarker(color)"
+          [style.background-color]="darker.toHexString()"
+          [style.color]="darker.isDark() ? '#ffffff': '#333333'">
+
+        <div>
+          <span>{{ darker.toHexString() }}</span>
+          <span [style.color]="darker.isDark() ? '#cdcdcd': '#666666'">{{ darker.luminance }}%</span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

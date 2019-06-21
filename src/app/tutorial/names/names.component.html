@@ -1,0 +1,34 @@
+<h1>Color Names</h1>
+
+<table>
+  <colgroup>
+    <col style="width: 160px;">
+    <col style="width: 80px;">
+    <col style="width: 180px;">
+    <col style="width: 180px;">
+    <col style="width: 180px;">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th (click)="sortBy('color')">Color</th>
+      <th (click)="sortBy('hex')">Hex</th>
+      <th (click)="sortBy('rgb')">RGB</th>
+      <th (click)="sortBy('hsl')">HSL</th>
+      <th (click)="sortBy('hwb')">HWB</th>
+      <th (click)="sortBy('cmyk')">CMYK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let color of colorNames"
+        [style.background-color]="color.toHexString()"
+        [style.color]="color.isDark() ? '#fff': '#000'">
+      <td><span>{{ color.name }}</span></td>
+      <td>{{color.toHexString()}}</td>
+      <td>{{color.toRgbString()}}</td>
+      <td>{{color.toHslString()}}</td>
+      <td>{{color.toHwbString()}}</td>
+      <td>{{color.toCmykString()}}</td>
+    </tr>
+  </tbody>
+</table>

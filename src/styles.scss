@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  background-color: #e4e4e4;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+table {
+  border: solid 1px #333;
+  border-spacing: 0px;
+  width: 100%;
+  font-family: monospace;
+
+  th {
+    text-align: center;
+    background-color: #d3d3d3;
+    padding: 8px;
+    height: 25px;
+    position: sticky;
+    top: -10px;
+    text-align: left;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &.default {
+      border-left: solid 2px #fff;
+      border-right: solid 2px #fff;
+    }
+
+    >div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  td {
+    height: 18px;
+    padding: 8px;
+
+    &.omninet {
+      border-top: solid 5px #fff;
+      border-bottom: solid 5px #fff;
+    }
+
+    &.default {
+      border-left: solid 2px #fff;
+      border-right: solid 2px #fff;
+    }
+
+    >div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  tr {
+    &:nth-child(even) {
+      background: #fefefe;
+    }
+
+    &:nth-child(even) {
+      background: #dedede;
+    }
+
+    th,
+    td {
+      border-bottom: solid 1px #333;
+    }
+
+
+    &:last-child {
+      td {
+        border-bottom: none;
+      }
+    }
+
+    th {
+      border-bottom: solid 2px #333;
+    }
+
+  }
+
+}

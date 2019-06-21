@@ -1,0 +1,138 @@
+<h1>Farben aufhellen und abdunkeln</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th *ngFor="let n of [-100, -90, -80, -70, -60, -50, -40, -30, -20, -10, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]"
+          [class.default]="n === 0">
+        <span>{{ n }}%</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="color-header omninet"
+          [style.background-color]="omninetColor.toHexString()"
+          [style.color]="omninetColor.isDark() ? '#ffffff': '#333333'">
+        <span>Omninet Beispiel</span>
+      </td>
+
+      <td class="omninet"
+          *ngFor="let oColor of getDarker(omninetColor)"
+          [style.background-color]="oColor.toHexString()"
+          [style.color]="oColor.isDark() ? '#ffffff': '#333333'">
+        <div>
+          <span *ngIf="!['#ffffff', '#000000'].includes(oColor.toHexString())">
+            {{ oColor.toHexString() }}</span>
+          <span *ngIf="!['#ffffff', '#000000'].includes(oColor.toHexString())"
+                [style.color]="oColor.isDark() ? '#cdcdcd': '#666666'">{{ oColor.luminance }}%</span>
+        </div>
+      </td>
+
+      <td class="default omninet"
+          [style.background-color]="omninetColor.toHexString()"
+          [style.color]="omninetColor.isDark() ? '#ffffff': '#333333'">
+        <div>
+          <span>{{ omninetColor.toHexString() }}</span>
+          <span [style.color]="omninetColor.isDark() ? '#cdcdcd': '#666666'">{{ omninetColor.luminance }}%</span>
+        </div>
+      </td>
+
+      <td class="omninet"
+          *ngFor="let oColor of getLighter(omninetColor)"
+          [style.background-color]="oColor.toHexString()"
+          [style.color]="oColor.isDark() ? '#ffffff': '#333333'">
+        <div>
+          <span *ngIf="!['#ffffff', '#000000'].includes(oColor.toHexString())">{{ oColor.toHexString() }}</span>
+          <span *ngIf="!['#ffffff', '#000000'].includes(oColor.toHexString())"
+                [style.color]="oColor.isDark() ? '#cdcdcd': '#666666'">{{ oColor.luminance }}%</span>
+        </div>
+      </td>
+
+    </tr>
+
+    <tr>
+      <td class="color-header omninet"
+          [style.background-color]="test.toHexString()"
+          [style.color]="test.isDark() ? '#ffff00': '#333333'">
+        <span>test</span>
+      </td>
+
+      <td class="omninet"
+          *ngFor="let oColor of getDarker(test)"
+          [style.background-color]="oColor.toHexString()"
+          [style.color]="oColor.isDark() ? '#ffff00': '#333333'">
+        <div>
+          <span *ngIf="!['#ffff00', '#000000'].includes(oColor.toHexString())">
+            {{ oColor.toHexString() }}</span>
+          <span *ngIf="!['#ffff00', '#000000'].includes(oColor.toHexString())"
+                [style.color]="oColor.isDark() ? '#cdcdcd': '#666666'">{{ oColor.luminance }}%</span>
+        </div>
+      </td>
+
+      <td class="default omninet"
+          [style.background-color]="test.toHexString()"
+          [style.color]="test.isDark() ? '#ffff00': '#333333'">
+        <div>
+          <span>{{ test.toHexString() }}</span>
+          <span [style.color]="test.isDark() ? '#cdcdcd': '#666666'">{{ test.luminance }}%</span>
+        </div>
+      </td>
+
+      <td class="omninet"
+          *ngFor="let oColor of getLighter(test)"
+          [style.background-color]="oColor.toHexString()"
+          [style.color]="oColor.isDark() ? '#ffff00': '#333333'">
+        <div>
+          <span *ngIf="!['#ffff00', '#000000'].includes(oColor.toHexString())">{{ oColor.toHexString() }}</span>
+          <span *ngIf="!['#ffff00', '#000000'].includes(oColor.toHexString())"
+                [style.color]="oColor.isDark() ? '#cdcdcd': '#666666'">{{ oColor.luminance }}%</span>
+        </div>
+      </td>
+
+    </tr>
+
+    <tr *ngFor="let color of colorNames">
+
+      <td class="color-header"
+          [style.background-color]="color.toHexString()"
+          [style.color]="color.isDark() ? '#ffffff': '#333333'">
+        <span>{{color.name}}</span>
+      </td>
+
+      <!-- aufhellen -->
+      <td *ngFor="let darker of getDarker(color)"
+          [style.background-color]="darker.toHexString()"
+          [style.color]="darker.isDark() ? '#ffffff': '#333333'">
+        <div>
+          <span *ngIf="!['#ffffff', '#000000'].includes(darker.toHexString())">{{ darker.toHexString() }}</span>
+          <span *ngIf="!['#ffffff', '#000000'].includes(darker.toHexString())"
+                [style.color]="darker.isDark() ? '#cdcdcd': '#666666'">{{ darker.luminance }}%</span>
+        </div>
+      </td>
+
+      <!-- current color -->
+      <td class="default "
+          [style.background-color]="color.toHexString()"
+          [style.color]="color.isDark() ? '#ffffff': '#333333'">
+        <div>
+          <span>{{ color.toHexString() }}</span>
+          <span [style.color]="color.isDark() ? '#fefefe': '#666666'">{{ color.luminance }}%</span>
+        </div>
+      </td>
+
+      <!-- aufhellen -->
+      <td *ngFor="let lighter of getLighter(color)"
+          [style.background-color]="lighter.toHexString()"
+          [style.color]="lighter.isDark() ? '#ffffff': '#333333'">
+        <div>
+          <span *ngIf="!['#ffffff', '#000000'].includes(lighter.toHexString())">{{ lighter.toHexString() }}</span>
+          <span *ngIf="!['#ffffff', '#000000'].includes(lighter.toHexString())"
+                [style.color]="lighter.isDark() ? '#cdcdcd': '#666666'">{{ lighter.luminance }}%</span>
+        </div>
+      </td>
+
+    </tr>
+  </tbody>
+</table>

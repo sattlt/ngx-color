@@ -1,0 +1,23 @@
+<nav>
+  <ul>
+    <li>
+      <a [routerLink]="['/home']">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['/names']">Names</a>
+    </li>
+    <li>
+      <a [routerLink]="['/lighter']">Lighter</a>
+    </li>
+    <li>
+      <a [routerLink]="['/darker']">Darker</a>
+    </li>
+    <li>
+      <a [routerLink]="['/lighterdarker']">Light & Dark</a>
+    </li>
+  </ul>
+</nav>
+
+<section>
+  <router-outlet></router-outlet>
+</section>

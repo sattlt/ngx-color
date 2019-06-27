@@ -51,7 +51,6 @@ export class Color implements RGB, HSL, HWB, CMYK {
     { name: 'DarkCyan', hex: '008b8b' },
     { name: 'DarkGoldenRod', hex: 'b8860b' },
     { name: 'DarkGray', hex: 'a9a9a9' },
-    { name: 'DarkGrey', hex: 'a9a9a9' },
     { name: 'DarkGreen', hex: '006400' },
     { name: 'DarkKhaki', hex: 'bdb76b' },
     { name: 'DarkMagenta', hex: '8b008b' },
@@ -78,7 +77,6 @@ export class Color implements RGB, HSL, HWB, CMYK {
     { name: 'Gold', hex: 'ffd700' },
     { name: 'GoldenRod', hex: 'daa520' },
     { name: 'Gray', hex: '808080' },
-    { name: 'Grey', hex: '808080' },
     { name: 'Green', hex: '008000' },
     { name: 'GreenYellow', hex: 'adff2f' },
     { name: 'HoneyDew', hex: 'f0fff0' },
@@ -95,14 +93,12 @@ export class Color implements RGB, HSL, HWB, CMYK {
     { name: 'LightCoral', hex: 'f08080' },
     { name: 'LightCyan', hex: 'e0ffff' },
     { name: 'LightGoldenRodYellow', hex: 'fafad2' },
-    { name: 'LightGray', hex: 'd3d3d3' },
     { name: 'LightGrey', hex: 'd3d3d3' },
     { name: 'LightGreen', hex: '90ee90' },
     { name: 'LightPink', hex: 'ffb6c1' },
     { name: 'LightSalmon', hex: 'ffa07a' },
     { name: 'LightSeaGreen', hex: '20b2aa' },
     { name: 'LightSkyBlue', hex: '87cefa' },
-    { name: 'LightSlateGray', hex: '778899' },
     { name: 'LightSlateGrey', hex: '778899' },
     { name: 'LightSteelBlue', hex: 'b0c4de' },
     { name: 'LightYellow', hex: 'ffffe0' },
@@ -156,7 +152,6 @@ export class Color implements RGB, HSL, HWB, CMYK {
     { name: 'Silver', hex: 'c0c0c0' },
     { name: 'SkyBlue', hex: '87ceeb' },
     { name: 'SlateBlue', hex: '6a5acd' },
-    { name: 'SlateGray', hex: '708090' },
     { name: 'SlateGrey', hex: '708090' },
     { name: 'Snow', hex: 'fffafa' },
     { name: 'SpringGreen', hex: '00ff7f' },
@@ -655,6 +650,45 @@ export class Color implements RGB, HSL, HWB, CMYK {
     color.lightness = (color.lightness < 0) ? 0 : color.lightness;
 
     return Color.fromHsl(color.hue, color.saturation, color.lightness);
+  }
+
+  lightenDarken(percent: number): Color {
+
+    const num = parseInt(this.hex, 16);
+    const amt = Math.round(2.55 * percent);
+    // tslint:disable-next-line: no-bitwise
+    const R = (num >> 16) + amt;
+    // tslint:disable-next-line: no-bitwise
+    const B = (num >> 8 & 0x00FF) + amt;
+    // tslint:disable-next-line: no-bitwise
+    const G = (num & 0x0000FF) + amt;
+
+    // tslint:disable-next-line: max-line-length
+    const hexString = (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (B < 255 ? B < 1 ? 0 : B : 255) * 0x100 + (G < 255 ? G < 1 ? 0 : G : 255)).toString(16).slice(1);
+    console.log('Hex: ', hexString);
+
+    return Color.fromHex(hexString);
+
+
+    // const num = parseInt(this.hex, 16);
+
+    // // tslint:disable-next-line: no-bitwise
+    // let r = (num >> 16) + amt;
+    // if (r > 255) { r = 255; } else if (r < 0) { r = 0; }
+
+    // // tslint:disable-next-line: no-bitwise
+    // let b = ((num >> 8) & 0x00FF) + amt;
+    // if (b > 255) { b = 255; } else if (b < 0) { b = 0; }
+
+    // // tslint:disable-next-line: no-bitwise
+    // let g = (num & 0x0000FF) + amt;
+    // if (g > 255) { g = 255; } else if (g < 0) { g = 0; }
+
+    // // tslint:disable-next-line: no-bitwise
+    // const hexString = (g | (b << 8) | (r << 16)).toString(16);
+    // // const hexString = Color.rgbToHex({ red: r, green: g, blue: b });
+    // console.log('hexColor: ', { r: r, g: g, b: b }, this.hex, '>', hexString);
+    // return Color.fromHex(hexString);
   }
 
   private roundDecimals() {

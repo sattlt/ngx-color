@@ -26,7 +26,7 @@ export class LighterDarkerComponent implements OnInit {
 
     for (let n = 10; n < 101; n += 10) {
       c = Color.fromHex(c.toHexString());
-      arr.push(c.lighter(n));
+      arr.push(c.lightenDarken(n));
     }
 
     return arr;
@@ -37,10 +37,35 @@ export class LighterDarkerComponent implements OnInit {
     let c = color;
 
     for (let n = 100; n > 0; n -= 10) {
-      c = Color.fromHex(c.toHexString());
-      arr.push(c.darker(n));
+      // c = Color.fromHex(c.toHexString());
+      arr.push(c.lightenDarken(-n));
+      // arr.push(c);
     }
 
     return arr;
   }
+
+  // getLighter(color: Color): Color[] {
+  //   const arr = [];
+  //   let c = color;
+
+  //   for (let n = 10; n < 101; n += 10) {
+  //     c = Color.fromHex(c.toHexString());
+  //     arr.push(c.lighter(n));
+  //   }
+
+  //   return arr;
+  // }
+
+  // getDarker(color: Color): Color[] {
+  //   const arr = [];
+  //   let c = color;
+
+  //   for (let n = 100; n > 0; n -= 10) {
+  //     c = Color.fromHex(c.toHexString());
+  //     arr.push(c.darker(n));
+  //   }
+
+  //   return arr;
+  // }
 }

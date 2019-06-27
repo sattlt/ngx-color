@@ -258,6 +258,15 @@ export class Color implements RGB, HSL, HWB, CMYK {
     return color;
   }
 
+  static fromRgbString(rgbString: string): Color {
+    const arr = rgbString.split(',');
+    return Color.fromRgb({
+      red: Number.parseInt(arr[0], 10),
+      green: Number.parseInt(arr[1], 10),
+      blue: Number.parseInt(arr[2], 10)
+    });
+  }
+
   static fromCmyk(cyan: number, magenta: number, yellow: number, black: number): Color {
 
     const color = new Color();
